@@ -1,4 +1,4 @@
-#created by 2017/11/25
+#created at 2017/11/25
 
 ## nodeJs and express should be install in your computer
 
@@ -9,9 +9,10 @@
 
 ````
 
-在浏览器中通过localhost:3000进行访问
+Enter in the browser localhost:3000
 
 ## ajax获取音频数据并播放
+## 按钮控制播放和暂停
 ## canvas绘制音频
 ## 静音效果
 ## 本地音频播放
