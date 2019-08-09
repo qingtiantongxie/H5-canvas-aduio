@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+  </head>
+  <body>
+  	<header>
+  		 <h1><%= title %></h1>
+  	</header>
+   	<section>
+   		<div id="song-lists">
+	   		<ul id="lists">
+	   			<% music.forEach(function(name,index){ %>
+	   				<% if(/\.mp3/.test(name)){ %>
+						  <li title="<%= name %>" data-index="<%= index %>"><%= name.substring(0,name.lastIndexOf(".")) %></li>
+					  <% } %>
+	   			<% }) %>	
+	   		</ul>
+	   	</div>
+		<div id="box-can"></div>
+   	</section>
+   	<footer>
+   		<div id="progress">
+   			<div id="progress_bar_tip"></div>
+   			<div id="progress_bar"></div>
+   			<span id="ball"></span>
+   		</div>
+   		<div id="controller">
+   			<div>
+   				<div class="btns">
+   					<button class="btn-controll iconfont show play">&#xe60d;</button>
+   					<button class="btn-controll iconfont hide pause">&#xe6ad;</button>
+   				</div>
+   			
+	   			<div class="time">
+		   			<span class="currentTime">00:00</span>/
+		   			<span class="totalTime">00:00</span>
+		   		</div>
+   			</div>
+
+   			<div>
+   				<div class="volumn">
+		   			vol&nbsp;&nbsp;&nbsp;&nbsp;<input id="volumn" type="range" min=0 max=100 value=60>
+		   		</div>
+		   		<div class="btns">
+		   			<span class="muti">静音</span>
+		   			<span class="localFile">本地文件</span>
+		   			<span class="loop">列表循环</span>
+		   			 <input type="file" class="music-file" accept="audio/mp3" multiple="true"/>
+		   			 <span class="download"><a href="" download="">下载</a></span>
+		   		</div>
+   			</div>
+	   		
+   		</div>	
+   			
+   	</footer>
+  </body>
+  <script src="../javascripts/retangle.js"></script>
+  <script src="../javascripts/index.js"></script>
+</html>
