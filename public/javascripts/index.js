@@ -58,6 +58,7 @@ let RAF = (function() {
             window.setTimeout(callback, 1000 / 60);
         };
 })();
+let drawAni; 
 
 let size = 64;
 let AC;
@@ -94,7 +95,7 @@ resize();
 window.onresize = resize;
 
 function initAnimate() {
-    var arr = new Uint8Array(analyserNode.frequencyBinCount);
+    let arr = new Uint8Array(analyserNode.frequencyBinCount);
     let w = width / size; //音频条宽度
     for (let i = 0; i < size; i++) {
         rt_array.push(new Retangle(i * w, height, w * 0.8, 4));
@@ -107,7 +108,7 @@ function initAnimate() {
             let n = arr[i];
             rt_array[i].update(n / 256 * (height - 4));
         }
-        RAF(animate);
+        drawAni = RAF(animate);
     }
     animate();
 }
@@ -355,14 +356,17 @@ let app = {
             bufferSource.buffer = buffer;
         AC.resume()
         this.loadBarAni(bufferSource.buffer); //播放的进度条
+        initAnimate();
         playBtn.className = playBtn.className.replace('show', 'hide')
         pauseBtn.className = pauseBtn.className.replace('hide', 'show')
     },
     stop() {
         AC.suspend()
         clearInterval(this.timer);
+        cancelAnimationFrame(drawAni);
         pauseBtn.className = pauseBtn.className.replace('show', 'hide')
         playBtn.className = pauseBtn.className.replace('hide', 'show')
+        
     },
     changeSource(i) {
         this.stop()
